@@ -9,16 +9,16 @@ const App = () => {
 
   return (
     <div
-      className={`parent w-full ${
-        isDarkMode ? "bg-zinc-900 text-white" : "bg-zinc-50 text"
+      className={`parent w-full duration-300 ${
+        isDarkMode ? "bg-zinc-900 text-white" : "bg-zinc-50 text-black"
       }`}
     >
       <Header />
 
-      <div className="flex gap-3 w-full h-[90vh] relative">
+      <div className="flex w-full h-[90vh] relative">
         <Sidebar isDarkMode={isDarkMode} />
 
-        <main className="main w-full h-full py-2 px-5 lg:px-0">
+        <main className="main w-full h-full py-2 px-5">
           <Outlet />
         </main>
       </div>
