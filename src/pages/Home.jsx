@@ -1,29 +1,22 @@
-import { useEffect } from "react";
-import { API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
-import { setPopularMovies } from "../store/reducers/moviesSlice";
+import { useSelector } from "react-redux";
+import useFetchTrendingMovies from "../hooks/useFetchTrendingMovies";
+import MovieCard from "../components/MovieCard";
+import Loader from "../components/Loader";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  useFetchTrendingMovies();
+  let trendingMovies = useSelector((store) => store.movies.trendingMovies);
 
-  const fetchPopularMovies = async () => {
-    const res = await fetch(
-      "https://api.themoviedb.org/3/trending/movie/day?language=hi",
-      API_OPTIONS
-    );
-    const data = await res.json();
-
-    dispatch(setPopularMovies(data?.results));
-  };
-
-  useEffect(() => {
-    fetchPopularMovies();
-  }, []);
+  if (!trendingMovies) {
+    return <Loader />;
+  }
 
   return (
     <>
-      <section className="w-full h-[88vh]">
-        <h1>This is Homepage</h1>
+      <section className="w-full flex flex-wrap items-start justify-start gap-3">
+        {trendingMovies?.map((movie) => (
+          <MovieCard key={movie.id} data={movie} />
+        ))}
       </section>
     </>
   );

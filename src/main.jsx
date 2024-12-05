@@ -8,6 +8,7 @@ import store from "./store/store.js";
 
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
+const Movies = lazy(() => import("./pages/Movies.jsx"));
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense>
             <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/movies/:movieType",
+        element: (
+          <Suspense>
+            <Movies />
           </Suspense>
         ),
       },

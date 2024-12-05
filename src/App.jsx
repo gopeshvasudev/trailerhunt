@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {
@@ -18,7 +17,7 @@ const App = () => {
       <div className="flex w-full h-[90vh] relative">
         <Sidebar isDarkMode={isDarkMode} />
 
-        <main className="main w-full h-full py-2 px-5">
+        <main className="main w-full h-full py-2 px-5 overflow-y-auto">
           <Outlet />
         </main>
       </div>
